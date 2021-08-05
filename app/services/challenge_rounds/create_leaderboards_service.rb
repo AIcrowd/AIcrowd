@@ -1,6 +1,6 @@
 module ChallengeRounds
   class CreateLeaderboardsService < ::BaseService
-    def initialize(challenge_round:, meta_challenge_id: nil, ml_challenge_id: nil, challenge_leaderboard_extra: nil)
+    def initialize(challenge_round:, meta_challenge_id: nil, ml_challenge_id: nil, challenge_leaderboard_extra: nil, is_freeze: nil)
       @challenge_round       = challenge_round
       @challenge             = @challenge_round.challenge
       @submissions           = @challenge_round.submissions.reorder(created_at: :desc)
@@ -11,7 +11,7 @@ module ChallengeRounds
         @challenge_leaderboard_extra = @challenge_round.default_leaderboard
       end
 
-      @is_freeze             = @challenge_leaderboard_extra.freeze_flag
+      @is_freeze             = is_freeze
       @is_borda_ranking      = false
 
       if @meta_challenge_id.blank? && @ml_challenge_id.blank?
@@ -361,7 +361,7 @@ module ChallengeRounds
     end
 
     def freeze_time
-      @is_freeze ? freeze_dttm : Time.current
+      @is_freeze
     end
 
     def freeze_dttm

@@ -10,7 +10,7 @@ Sidekiq.default_worker_options = {
 }
 
 schedule_file = "config/schedule.yml"
-Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file) if File.exist?(schedule_file) # && Sidekiq.server?
+# Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file) if File.exist?(schedule_file) # && Sidekiq.server?
 
 unless Rails.env.test?
   Sidekiq::Logging.logger.level = Logger::DEBUG

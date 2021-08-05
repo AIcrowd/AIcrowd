@@ -14592,6 +14592,309 @@ input.width-185 {
   margin: 0;
 }
 
+.leaderboard-srch{
+}
+.btn-srch {
+    color: #000;
+    background-color: #ffffff;
+    border-color: #6c757d;
+    border-left: none;
+    height: 35px;
+
+}
+.rank-card-recent{
+  margin: 35px 20px 10px 15px;
+  width: 100%;
+}
+.rank-card-recent h4{
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.rank-card-point {
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-left: 8%;
+}
+.leaderboard-srch .input-group input{
+  height: 35px;
+  border-color: #6c757d;
+}
+.leaderboard-srch .input-group .form-control:focus{
+  box-shadow: none;
+}
+.btn-filter a{
+  color: black;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+.rank-leaderboard{
+  padding: 20px 20px 0px 20px;
+}
+.top-rank{
+  padding: 20px 20px 0px 20px;
+}
+.rank-card{
+  font-size: 0.8rem;
+  text-align: center;
+  box-shadow: 1px 1px 5px 6px #00000012;
+    width: 300px;
+    height: 320px;
+}
+.card-rank{
+  font-weight: bold;
+    font-family: 'Merriweather', serif;
+    font-size: 7.0rem;
+    color: white;
+}
+.rank-card-banner{
+  height: 24%;
+    position: relative;
+    align-items: center;
+    flex-flow: row;
+    display: flex;
+    color: white;
+    background-color: #F0524D;
+}
+.rank-card-image{
+  bottom: -24px;
+    position: absolute;
+    width: 50px;
+    right: 10px;
+}
+.rank-card-image img{
+  border-radius: 50%;
+    width: 100%;
+    height: auto;
+}
+.rank-card-name{
+  padding: 0px 0px 0px 0px;
+    margin-top: 13px;
+}
+.rank-card-name h3{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+.rank-card-name p{
+  font-size: 0.9rem;
+  font-weight: 200;
+}
+.rank-card-content-heading {
+    color: gray;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-right: 50%;
+}
+
+.rank-card-content{
+  padding: 0px 0px 0px 0px;
+  justify-content: space-around;
+    display: flex;
+}
+.rank-card-submission{
+  justify-content: center;
+    display: flex;
+    text-align: center;
+
+}
+.rank-table thead th {
+   border:none;
+}
+.table-light, .table-light>td, .table-light>th {
+    background-color: #fdfdfe00;
+}
+.rank-leaderboard-tablelist{
+  box-shadow: -1px 1px 7px #00000012;
+    background: #fbfbfb;
+}
+.rank-table {
+              display: table;
+                border-collapse:separate;
+                border-spacing:0 15px;
+            }
+
+            .table-light th{
+              font-size: 0.8rem;
+              font-weight: 600;
+            }
+.rank-leaderboard-country img{
+  width: 24px;
+}
+.ranker-details{
+  display: flex;
+  margin-left: 30%
+}
+.ranker-picture{
+  margin-right: 1rem;
+  width: 40px;
+}
+.ranker-picture img{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.ranker-name h2{
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.ranker-name p{
+  margin-bottom: auto;
+    font-weight: 300;
+    font-size: 0.7rem;
+}
+.rank-table td, .rank-table th {
+  text-align: center;
+    padding: .75rem;
+    vertical-align: middle;
+}
+.d-flex-center{
+  display: flex;
+  justify-content: center;
+}
+.center-rank{
+  margin:1.5rem;
+}
+.rankinggrid{
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    overflow: visible;
+}
+.rankingrow{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    flex-flow: row;
+}
+@media only screen and (max-width: 768px) {
+    .rankinggrid{
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+    .rankingrow {
+    display: flex;
+    width: 100%;
+    flex-flow: column;
+}
+  .center-rank {
+    margin: 1rem 0px 1rem 0px;
+}
+  .rank-table {
+              display: block;
+                border-collapse:separate;
+                border-spacing:0 15px;
+            }
+            .btn-filter a {
+    color: black;
+    font-weight: 500;
+    font-size: 0.6rem;
+    text-decoration: none;
+}
+.leaderboard-heading{
+  font-size: 0.9rem;
+}
+.rank-card-name{
+    text-align: left;
+}
+.header{
+  display: inline-flex;
+    width: 100%;
+    align-items: center;
+    margin: 0!important;
+    box-shadow: 1px 1px 6px #0000005e;
+    padding: 10px 10px 10px 10px;
+}
+.leaderboard-srch .input-group input {
+    height: 35px;
+    border-color: #6c757d;
+    font-size: 0.6rem;
+}
+.leaderboard-srch {
+    width: 91%;
+}
+.rank-card {
+    box-shadow: 1px 1px 5px 6px #00000012;
+    width: 100%;
+    height: 320px;
+}
+.rank-leaderboard {
+    padding: 10px 0px 0px 20px;
+}
+.top-rank{
+  display: flex;
+  flex-flow: column;
+}
+.leaderboard-srch .input-group input{
+  height: 25px;
+  border-color: #6c757d;
+}
+.btn-srch {
+    font-size: 0.8rem;
+    color: #000;
+    background-color: #ffffff;
+    border-color: #6c757d;
+    border-left: none;
+    height: 25px;
+    padding: 2px;
+
+}
+}
+
+.profile-image-parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.profile-image {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.profile-image-flag {
+  position: absolute;
+  top: 20px;
+  left: -14px;
+  width: 20px !important;
+  height: 15px !important;
+}
+
+.profile-image-flag-big {
+  position: absolute;
+  top: 33px;
+  left: -10px;
+  width: 25px !important;
+  height: 20px !important;
+  border-radius: 0% !important;
+}
+
+.rank-card-tier{
+  align-self: flex-end;
+  background-color: gold;
+  border-radius: 20px;
+  margin-bottom: 23px;
+  margin-left: 30%;
+  color: black
+}
+
+.rank-list-tier {
+  height: 55px;
+  background-color: gold;
+  width: 7px;
+  display: inherit;
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
+.rank-list-rank {
+  margin-left: 10px;
+  align-self: center;
+}
+
+
 
 @import '../javascripts/ckeditor/plugins/codesnippet/lib/highlight/styles/sunburst';
 @import 'challenges/form';
@@ -14605,3 +14908,5 @@ input.width-185 {
 @import 'feedback';
 @import 'commontator/application';
 @import '_notebook.scss';
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap'

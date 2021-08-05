@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <section class="rank-leaderboard row">
+    <table class="table-responsive rank-table">
+      <thead>
+        <tr class="table-light">
+          <th scope="col">RANK</th>
+          <!-- <th scope="col">COUNTRY</th> -->
+          <th scope="col">PARTICIPANTS</th>
+          <th scope="col">CROWD KARMA POINTS <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-trigger="click" tooltip-html-unsafe='<%= render partial: 'info' %>'>
+          </i></th>
+          <th scope="col">LAST CHALLENGE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rankings.each_with_index do |ranking, index|%>
+          <tr class="mt-3 rank-leaderboard-tablelist">
+            <th>
+              <div class="row">
+                <div class="rank-list-tier"></div>
+                <div style="margin-left: 10px;align-self: center;">#<%= ranking.user_rating.rank %></div>
+                <div class="ml-2 rank-list-rank">
+                  <%= global_leaderboard_ranking_change(ranking.participant) %>
+                </div>
+              </div>
+            </th>
+            <td>
+              <div class="masthead-blog-post" style="padding: 0px;">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12" style="margin-left: 30%;">
+                      <div>
+                        <span class="author">
+                          <% if ranking.participant.country_cd.blank?%>
+                            <%= render partial: 'participants/get_user_profile', locals: { participant: ranking.participant, username: 'false' } %>
+                          <% else %>
+                            <%= render partial: 'participants/get_user_profile_with_flag', locals: { participant: ranking.participant, username: 'false' } %>
+                          <% end %>
+                          <%= render partial: 'participants/get_user_profile', locals: { participant: ranking.participant, avatar: 'false' } %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td><%= number_with_precision(ranking.rating, precision: 2) %></td>
+            <td><%= link_to ranking.user_rating.challenge_leaderboard_extra.challenge.challenge, challenge_path(ranking.user_rating.challenge_leaderboard_extra.challenge.slug) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -115,6 +115,9 @@ class Participant < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :team_members, dependent: :destroy
   has_many :participant_ml_challenge_goals, dependent: :destroy
+  has_many :ml_activity_points
+  has_many :posts
+  has_many :ratings
   has_many :ml_activity_points, dependent: :destroy
   # has_many :likes, dependent: :destroy
   has_many :posts, dependent: :nullify

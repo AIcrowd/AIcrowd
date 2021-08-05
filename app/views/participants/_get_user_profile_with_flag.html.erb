@@ -1,0 +1,20 @@
+<% if participant.present? %>
+  <%
+    avatar           = avatar.present? ? avatar : true
+    username         = username.present? ? username : true
+    truncate         = truncate.present? ? truncate : false
+    span_location_id = location_id(participant)
+    flag_class       = flag_class.present? ? flag_class : 'profile-image-flag'
+  %>
+
+  <span id="<%= span_location_id %>">
+    <span data-controller="participants"
+          data-participants-participant="<%= participant&.id %>"
+          data-participants-username="<%= username %>"
+          data-participants-avatar="<%= avatar %>"
+          data-participants-truncate="<%= truncate %>"
+          data-participants-location="<%= span_location_id %>">
+      <%= render partial: 'participants/name_avatar_with_flag', locals: { participant: participant, username: username, avatar: avatar, truncate: truncate, flag_class: flag_class } %>
+    </span>
+  </span>
+<% end %>

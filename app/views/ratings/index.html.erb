@@ -1,0 +1,125 @@
+<%= render partial: 'rating_masthead' %>
+<div class="container-fluid">
+  <section class="top-rank">
+    <div class="row rankinggrid">
+      <div class="rank-card  mt-5">
+        <div class="rank-card-banner">
+          <h1 class="card-rank mr-4 mt-2">1</h1>
+          <div class="rank-card-name">
+            <h3><%= @rank_1.participant.name %></h3>
+          </div>
+          <div class="rank-card-image">
+            <%= render partial: 'participants/get_user_profile_with_flag', locals: { participant: @rank_1.participant, username: 'false', flag_class: 'profile-image-flag-big' } %>
+          </div>
+        </div>
+        <div class="rank-card-content">
+          <div class="rank-card-recent">
+            <h3 class="rank-card-content-heading">
+              POINTS
+            </h3>
+            <div class="row">
+              <h3 class="rank-card-point"><%= number_with_precision(@rank_1.rating, precision: 2) %></h3>
+              <div style="color: red;font-size: 1rem;margin-top:-2px"><%= "(#{@rank_1_change})"%></div>
+              <div class="col-3 rank-card-tier">
+                Tier 1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rank-card-submission">
+          <h3 class="rank-card-content-heading">
+            POINTS GRAPH
+          </h3>
+          <div class="rank-card-submission">
+          </div>
+        </div>
+        <tr>
+          <td>
+            <% has = {}; has[Date.today - 2.days] = 110; has[Date.today] = 123; has[Date.today - 1.day]= 143; has[Date.today - 3.days] = 340;has[Date.today - 4.days] = 510%>
+            <%= line_chart @rank_1_graph, width: "280px", height: "100px",  colors: ["#F0524D"], discrete: true, library: {scales:  {xAxes: [{ gridLines: { display: false }, ticks: { display: false } }], }} %>
+          </td>
+        </tr>
+      </div>
+    </div>
+    <div class="row rankingrow">
+      <div class="rank-card my-3">
+        <div class="rank-card-banner">
+          <h1 class="card-rank mr-4 mt-2">2</h1>
+          <div class="rank-card-name">
+            <h3><%= @rank_2.participant.name %></h3>
+          </div>
+          <div class="rank-card-image">
+            <%= render partial: 'participants/get_user_profile_with_flag', locals: { participant: @rank_2.participant, username: 'false', flag_class: 'profile-image-flag-big' } %>
+          </div>
+        </div>
+        <div class="rank-card-content">
+          <div class="rank-card-recent">
+            <h3 class="rank-card-content-heading">
+              POINTS
+            </h3>
+            <div class="row">
+              <h3 class="rank-card-point"><%= number_with_precision(@rank_2.rating, precision: 2) %></h3>
+              <div style="color: red;font-size: 1rem;margin-top:-2px"><%= "(#{@rank_2_change})"%></div>
+              <div class="col-3 rank-card-tier" style="background-color: #C0C0C0;">
+                Tier 1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rank-card-submission">
+          <h3 class="rank-card-content-heading">
+            POINTS GRAPH
+          </h3>
+          <div class="rank-card-submission">
+          </div>
+        </div>
+        <tr>
+          <td>
+            <% has = {}; has[Date.today - 2.days] = 110; has[Date.today] = 123; has[Date.today - 1.day]= 143%>
+            <%= line_chart @rank_2_graph, width: "280px", height: "100px", colors: ["#F0524D"], library: { scales: {xAxes: [ display: false] } } %>
+          </td>
+        </tr>
+      </div>
+      <div class="rank-card my-3">
+        <div class="rank-card-banner">
+          <h1 class="card-rank mr-4 mt-2">3</h1>
+          <div class="rank-card-name">
+            <h3><%= @rank_3.participant.name %></h3>
+          </div>
+          <div class="rank-card-image">
+            <%= render partial: 'participants/get_user_profile_with_flag', locals: { participant: @rank_3.participant, username: 'false', flag_class: 'profile-image-flag-big' } %>
+          </div>
+        </div>
+        <div class="rank-card-content">
+          <div class="rank-card-recent">
+            <h3 class="rank-card-content-heading">
+              POINTS
+            </h3>
+            <div class="row">
+              <h3 class="rank-card-point"><%= number_with_precision(@rank_3.rating, precision: 2) %></h3>
+              <div style="color: red;font-size: 1rem;margin-top:-2px"><%= "(#{@rank_3_change})"%></div>
+              <div class="col-3 rank-card-tier" style="background-color: #CD7532">
+                Tier 1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rank-card-submission">
+          <h3 class="rank-card-content-heading">
+            POINTS GRAPH
+          </h3>
+
+          <div class="rank-card-submission">
+          </div>
+        </div>
+        <tr>
+          <td>
+            <% has = {}; has[Date.today - 2.days] = 310; has[Date.today] = 2223; has[Date.today - 1.day]= 1633%>
+            <%= line_chart @rank_3_graph, width: "280px", height: "100px", colors: ["#F0524D"], library: { scales: {xAxes: [ display: false] } } %>
+          </td>
+        </tr>
+      </div>
+    </div>
+  </section>
+</div>
+<%= render partial: 'rating_participant_list', locals: {rankings: @rankings} %>

@@ -61,4 +61,31 @@ module ParticipantsHelper
 
     participant.ml_activity_points.group_by_day(:created_at, format: "%Y-%m-%d").sum_points_by_day
   end
+
+  def global_leaderboard_ranking_change(participant)
+    if participant.ratings.count > 1
+      previous_rank = participant.ratings.order('created_at desc').second.rank
+      current_rank = participant.ratings.order('created_at desc').first.rank
+    end
+
+    if participant.ratings.count == 1 || previous_rank == current_rank
+      return image_tag(
+        "icon-change-none.svg",
+        data: { toggle: 'tooltip' },
+        title: 'No change')
+    end
+
+    if current_rank > previous_rank
+      return image_tag("icon-change-down.svg",
+        data:  { toggle: 'tooltip' },
+        title: "-#{current_rank - previous_rank} change, previous rank #{previous_rank}")
+    end
+
+    if current_rank < previous_rank && previous_rank != 0
+      return image_tag(
+        "icon-change-up.svg",
+        data:  { toggle: 'tooltip' },
+        title: "+#{previous_rank - current_rank} change, previous rank #{previous_rank}")
+    end
+  end
 end

@@ -1,11 +1,23 @@
-badges_daily:
-  cron: "30 2 * * *" # 2:30 AM every day
-  class: "BadgesDailyJob"
+# badges_daily:
+#   cron: "30 2 * * *" # 2:30 AM every day
+#   class: "BadgesDailyJob"
 
-discourse_badges_daily:
-  cron: "30 2 * * *" # 2:30 AM every day
-  class: "DiscourseBadgesDailyJob"
+# discourse_badges_daily:
+#   cron: "30 2 * * *" # 2:30 AM every day
+#   class: "DiscourseBadgesDailyJob"
 
-terminate_challenges:
-  cron: "*/10 * * * *" # Every 10 minutes
-  class: "TerminateChallengesJob"
+# terminate_challenges:
+#   cron: "*/10 * * * *" # Every 10 minutes
+#   class: "TerminateChallengesJob"
+
+# sync_challenge_leaderboard_extras:
+#   cron: "30 2 * * *" # 2:30 AM every day
+#   class: "Reputation::SyncChallengeLeaderboardExtraJob"
+
+# sync_leaderboards:
+#   cron: "30 2 * * *" # 2:30 AM every day
+#   class: "Reputation::SyncLeaderboardDataJob"
+
+# rating_calculation_job:
+#     cron: "0 */6 * * *" # Every 6 hours
+#     class: Reputation::RatingCalculationJob

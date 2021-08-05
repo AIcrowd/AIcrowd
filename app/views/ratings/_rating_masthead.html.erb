@@ -1,0 +1,53 @@
+<div class="masthead">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1>AIcrowd Leaderboard</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /masthead -->
+<!-- filter -->
+<div class="filter-bar">
+  <div class="container-fluid">
+    <div class="row" style="width: 100%;">
+      <div class="col-6">
+        <div class="leaderboard-srch">
+          <div class="input-group">
+            <%= form_with url: search_ratings_path, method: :get, local: true, html: { 'data-controller': 'search-form', 'data-action': 'submit->search-form#handleSubmit', style: 'width: 70%'} do |f| %>
+              <%= f.text_field :q,
+                value: params[:q],
+                class: 'form-control search-input',
+                placeholder: 'Search for any participant,institute,rank etc',
+                'aria-label': 'Search',
+                'aria-describedby': 'Search',
+                'data-target': 'search-form.searchQuery'
+               %>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="btn-filter col-2 float-right">
+          <i class="fa fa-filter" aria-hidden="true" style="vertical-align: -webkit-baseline-middle;"></i>
+          <a href="#" style="vertical-align: -webkit-baseline-middle;">FILTERS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /filter -->
+
+<!-- filtered text -->
+<div class="container-fluid">
+  <% if params[:status].present? || params[:categories].present? || params[:prizes].present? %>
+    <p class='card-text'>
+      <%= filter_message(params[:status], params[:categories], params[:prizes]) %>
+      <%= link_to 'Clear Filter', challenges_path, class: 'btn btn-sm apply-filter-btn none-underline'  %>
+    </p>
+  <% end %>
+</div>
+<!-- /filtered text -->
