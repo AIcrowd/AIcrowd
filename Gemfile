@@ -110,6 +110,7 @@ gem 'gemoji-parser'
 gem 'clipboard-rails'
 gem 'puma_worker_killer'
 gem 'pretender'
+gem 'react-rails'
 
 # HTTP clients
 gem 'faraday', '~> 1.0'
