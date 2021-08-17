@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_121214) do
+ActiveRecord::Schema.define(version: 2021_07_27_162437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.string "submitter_type"
     t.bigint "submitter_id"
     t.integer "meta_challenge_id"
-    t.bigint "old_participant_id"
     t.integer "ml_challenge_id"
+    t.bigint "old_participant_id"
     t.text "submission_link"
     t.integer "challenge_leaderboard_extra_id"
     t.index ["challenge_id"], name: "index_base_leaderboards_on_challenge_id"
@@ -383,13 +383,6 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.text "leaderboard_note"
     t.boolean "default", default: false
     t.integer "sequence", default: 0
-    t.boolean "ranking_enabled", default: false
-    t.float "weight", default: 0.005
-    t.integer "sub_round_size", default: 1
-    t.boolean "use_for_final_rating", default: false
-    t.boolean "for_weekly_rating", default: false
-    t.boolean "rating_calculated", default: false
-    t.datetime "rank_last_calculated_at"
     t.boolean "is_tie_possible", default: true
     t.index ["challenge_id"], name: "index_challenge_leaderboard_extras_on_challenge_id"
     t.index ["challenge_round_id"], name: "index_challenge_leaderboard_extras_on_challenge_round_id"
@@ -559,16 +552,16 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.integer "team_freeze_seconds_before_end", default: 604800
     t.boolean "hidden_challenge", default: false, null: false
     t.datetime "team_freeze_time"
+    t.string "evaluator_type_cd"
     t.boolean "scrollable_overview_tabs", default: true, null: false
     t.bigint "discourse_group_id"
-    t.string "evaluator_type_cd"
     t.string "discourse_group_name"
     t.boolean "meta_challenge"
+    t.boolean "practice_flag", default: false, null: false
     t.string "banner_file"
     t.string "banner_color"
     t.boolean "big_challenge_card_image"
     t.string "banner_mobile_file"
-    t.boolean "practice_flag", default: false, null: false
     t.float "weight", default: 0.0, null: false
     t.boolean "editors_selection", default: false, null: false
     t.boolean "ml_challenge", default: false, null: false
@@ -1071,10 +1064,11 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.boolean "agreed_to_organizers_newsletter", default: true, null: false
     t.float "fixed_rating"
     t.bigint "gitlab_id"
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "referred_by_id"
     t.boolean "trusted", default: false
     t.boolean "super_admin", default: false
+    t.boolean "mixpanel_done", default: false
     t.index ["confirmation_token"], name: "index_participants_on_confirmation_token", unique: true
     t.index ["email"], name: "index_participants_on_email", unique: true
     t.index ["name"], name: "index_participants_on_name", unique: true
@@ -1277,9 +1271,9 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.boolean "debug_submission", default: false, null: false
     t.string "submission_received_from", default: "web"
     t.boolean "deleted", default: false
+    t.boolean "mixpanel_sent", default: false
     t.index ["challenge_id"], name: "index_submissions_on_challenge_id"
     t.index ["challenge_round_id"], name: "index_submissions_on_challenge_round_id"
-    t.index ["created_at"], name: "index_submissions_on_created_at"
     t.index ["deleted"], name: "index_submissions_on_deleted"
     t.index ["meta_challenge_id"], name: "index_submissions_on_meta_challenge_id"
     t.index ["ml_challenge_id"], name: "index_submissions_on_ml_challenge_id"
@@ -1326,7 +1320,7 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.bigint "team_id", null: false
     t.bigint "invitor_id", null: false
     t.string "status", default: "pending", null: false
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "invitee_type", null: false
@@ -1383,8 +1377,7 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.index ["participant_id"], name: "index_user_ratings_on_participant_id"
   end
 
-  create_table "versions", id: false, force: :cascade do |t|
-    t.bigserial "id", null: false
+  create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.string "event", null: false
@@ -1405,12 +1398,95 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
     t.index ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type"
   end
 
+  add_foreign_key "aicrowd_badges", "badges_events"
+  add_foreign_key "aicrowd_user_badges", "aicrowd_badges"
+  add_foreign_key "aicrowd_user_badges", "participants"
+  add_foreign_key "base_leaderboards", "challenge_rounds"
+  add_foreign_key "base_leaderboards", "challenges"
+  add_foreign_key "blogs", "participants"
+  add_foreign_key "challenge_call_responses", "challenge_calls"
+  add_foreign_key "challenge_participants", "challenges"
+  add_foreign_key "challenge_participants", "participants"
+  add_foreign_key "challenge_partners", "challenges"
+  add_foreign_key "challenge_rounds", "challenges"
+  add_foreign_key "challenge_rules", "challenges"
+  add_foreign_key "challenges_organizers", "challenges"
+  add_foreign_key "challenges_organizers", "organizers"
+  add_foreign_key "clef_tasks", "organizers"
+  add_foreign_key "commontator_comments", "commontator_comments", column: "parent_id", on_update: :restrict, on_delete: :cascade
+  add_foreign_key "commontator_comments", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "commontator_subscriptions", "commontator_threads", column: "thread_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dataset_file_downloads", "dataset_files"
+  add_foreign_key "dataset_file_downloads", "participants"
+  add_foreign_key "dataset_folders", "challenges"
+  add_foreign_key "email_invitations", "participants", column: "claimant_id"
+  add_foreign_key "email_invitations", "participants", column: "invitor_id"
+  add_foreign_key "email_preferences", "participants"
   add_foreign_key "feedbacks", "participants"
   add_foreign_key "follows", "participants"
+  add_foreign_key "invitations", "challenges"
+  add_foreign_key "invitations", "participants"
+  add_foreign_key "ml_activity_points", "activity_points"
+  add_foreign_key "ml_activity_points", "challenges"
   add_foreign_key "ml_activity_points", "participants"
+  add_foreign_key "newsletter_emails", "challenges"
+  add_foreign_key "newsletter_emails", "participants"
+  add_foreign_key "notifications", "challenges"
+  add_foreign_key "notifications", "participants"
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "participant_clef_tasks", "clef_tasks"
+  add_foreign_key "participant_clef_tasks", "participants"
+  add_foreign_key "participant_ml_challenge_goals", "challenges"
+  add_foreign_key "participant_ml_challenge_goals", "daily_practice_goals"
+  add_foreign_key "participant_ml_challenge_goals", "participants"
   add_foreign_key "participant_organizers", "organizers"
+  add_foreign_key "participant_organizers", "participants"
+  add_foreign_key "partners", "organizers"
+  add_foreign_key "submission_file_definitions", "challenges"
+  add_foreign_key "submission_files", "submissions"
+  add_foreign_key "submission_grades", "submissions"
+  add_foreign_key "submissions", "challenges"
   add_foreign_key "submissions", "participants"
+  add_foreign_key "task_dataset_files", "clef_tasks"
+  add_foreign_key "team_invitations", "participants", column: "invitor_id"
+  add_foreign_key "team_invitations", "teams"
+  add_foreign_key "team_members", "participants"
+  add_foreign_key "team_participants", "participants"
+  add_foreign_key "team_participants", "teams"
+  add_foreign_key "teams", "challenges"
+  add_foreign_key "user_ratings", "challenge_rounds"
   add_foreign_key "user_ratings", "participants"
+  add_foreign_key "votes", "participants"
+
+  create_view "participant_sign_ups",  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      count(participants.id) AS count,
+      (date_part('month'::text, participants.created_at))::integer AS mnth,
+      (date_part('year'::text, participants.created_at))::integer AS yr
+     FROM participants
+    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
+    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
+  SQL
+
+  create_view "participant_submissions",  sql_definition: <<-SQL
+      SELECT s.id,
+      s.challenge_id,
+      s.participant_id,
+      p.name,
+      s.grading_status_cd,
+      s.post_challenge,
+      s.score,
+      s.score_secondary,
+      count(f.*) AS files,
+      s.created_at
+     FROM participants p,
+      (submissions s
+       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
+    WHERE (s.participant_id = p.id)
+    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
+    ORDER BY s.created_at DESC;
+  SQL
 
   create_view "challenge_registrations",  sql_definition: <<-SQL
       SELECT row_number() OVER () AS id,
@@ -1433,7 +1509,7 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
           UNION
            SELECT df.challenge_id,
               dfd.participant_id,
-              'dataset_download'::text AS text,
+              'dataset_download'::text,
               NULL::integer AS clef_task_id
              FROM dataset_file_downloads dfd,
               dataset_files df
@@ -1446,6 +1522,34 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
              FROM participant_clef_tasks pc,
               challenges c
             WHERE (c.clef_task_id = pc.clef_task_id)) x;
+  SQL
+
+  create_view "participant_challenge_counts",  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS row_number,
+      y.challenge_id,
+      y.participant_id,
+      y.registration_type
+     FROM ( SELECT DISTINCT x.challenge_id,
+              x.participant_id,
+              x.registration_type
+             FROM ( SELECT s.challenge_id,
+                      s.participant_id,
+                      'submission'::text AS registration_type
+                     FROM submissions s
+                  UNION
+                   SELECT s.votable_id,
+                      s.participant_id,
+                      'heart'::text AS registration_type
+                     FROM votes s
+                    WHERE ((s.votable_type)::text = 'Challenge'::text)
+                  UNION
+                   SELECT df.challenge_id,
+                      dfd.participant_id,
+                      'dataset_download'::text
+                     FROM dataset_file_downloads dfd,
+                      dataset_files df
+                    WHERE (dfd.dataset_file_id = df.id)) x
+            ORDER BY x.challenge_id, x.participant_id) y;
   SQL
 
   create_view "challenge_stats",  sql_definition: <<-SQL
@@ -1469,6 +1573,34 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
       challenge_rounds r
     WHERE (r.challenge_id = c.id)
     ORDER BY (row_number() OVER ()), c.challenge;
+  SQL
+
+  create_view "participant_challenges",  sql_definition: <<-SQL
+      SELECT DISTINCT p.id,
+      cr.challenge_id,
+      cr.participant_id,
+      c.status_cd,
+      c.challenge,
+      c.private_challenge,
+      c.description,
+      c.rules,
+      c.prizes,
+      c.resources,
+      c.tagline,
+      c.image_file,
+      c.submissions_count,
+      c.participant_count,
+      c.page_views,
+      p.name,
+      p.email,
+      p.bio,
+      p.github,
+      p.linkedin,
+      p.twitter
+     FROM participants p,
+      challenges c,
+      challenge_registrations cr
+    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
   SQL
 
   create_view "leaderboards",  sql_definition: <<-SQL
@@ -1500,8 +1632,8 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
       base_leaderboards.submitter_type,
       base_leaderboards.submitter_id,
       base_leaderboards.meta_challenge_id,
-      base_leaderboards.old_participant_id,
       base_leaderboards.ml_challenge_id,
+      base_leaderboards.old_participant_id,
       base_leaderboards.submission_link,
       base_leaderboards.challenge_leaderboard_extra_id
      FROM base_leaderboards
@@ -1537,97 +1669,12 @@ ActiveRecord::Schema.define(version: 2021_06_14_121214) do
       base_leaderboards.submitter_type,
       base_leaderboards.submitter_id,
       base_leaderboards.meta_challenge_id,
-      base_leaderboards.old_participant_id,
       base_leaderboards.ml_challenge_id,
+      base_leaderboards.old_participant_id,
       base_leaderboards.submission_link,
       base_leaderboards.challenge_leaderboard_extra_id
      FROM base_leaderboards
     WHERE ((base_leaderboards.leaderboard_type_cd)::text = 'ongoing'::text);
-  SQL
-
-  create_view "participant_challenge_counts",  sql_definition: <<-SQL
-      SELECT row_number() OVER () AS row_number,
-      y.challenge_id,
-      y.participant_id,
-      y.registration_type
-     FROM ( SELECT DISTINCT x.challenge_id,
-              x.participant_id,
-              x.registration_type
-             FROM ( SELECT s.challenge_id,
-                      s.participant_id,
-                      'submission'::text AS registration_type
-                     FROM submissions s
-                  UNION
-                   SELECT s.votable_id,
-                      s.participant_id,
-                      'heart'::text AS registration_type
-                     FROM votes s
-                    WHERE ((s.votable_type)::text = 'Challenge'::text)
-                  UNION
-                   SELECT df.challenge_id,
-                      dfd.participant_id,
-                      'dataset_download'::text AS text
-                     FROM dataset_file_downloads dfd,
-                      dataset_files df
-                    WHERE (dfd.dataset_file_id = df.id)) x
-            ORDER BY x.challenge_id, x.participant_id) y;
-  SQL
-
-  create_view "participant_challenges",  sql_definition: <<-SQL
-      SELECT DISTINCT p.id,
-      cr.challenge_id,
-      cr.participant_id,
-      c.status_cd,
-      c.challenge,
-      c.private_challenge,
-      c.description,
-      c.rules,
-      c.prizes,
-      c.resources,
-      c.tagline,
-      c.image_file,
-      c.submissions_count,
-      c.participant_count,
-      c.page_views,
-      p.name,
-      p.email,
-      p.bio,
-      p.github,
-      p.linkedin,
-      p.twitter
-     FROM participants p,
-      challenges c,
-      challenge_registrations cr
-    WHERE ((cr.participant_id = p.id) AND (cr.challenge_id = c.id));
-  SQL
-
-  create_view "participant_sign_ups",  sql_definition: <<-SQL
-      SELECT row_number() OVER () AS id,
-      count(participants.id) AS count,
-      (date_part('month'::text, participants.created_at))::integer AS mnth,
-      (date_part('year'::text, participants.created_at))::integer AS yr
-     FROM participants
-    GROUP BY ((date_part('month'::text, participants.created_at))::integer), ((date_part('year'::text, participants.created_at))::integer)
-    ORDER BY ((date_part('year'::text, participants.created_at))::integer), ((date_part('month'::text, participants.created_at))::integer);
-  SQL
-
-  create_view "participant_submissions",  sql_definition: <<-SQL
-      SELECT s.id,
-      s.challenge_id,
-      s.participant_id,
-      p.name,
-      s.grading_status_cd,
-      s.post_challenge,
-      s.score,
-      s.score_secondary,
-      count(f.*) AS files,
-      s.created_at
-     FROM participants p,
-      (submissions s
-       LEFT JOIN submission_files f ON ((f.submission_id = s.id)))
-    WHERE (s.participant_id = p.id)
-    GROUP BY s.id, s.challenge_id, s.participant_id, p.name, s.grading_status_cd, s.post_challenge, s.score, s.score_secondary, s.created_at
-    ORDER BY s.created_at DESC;
   SQL
 
 end

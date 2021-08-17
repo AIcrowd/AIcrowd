@@ -67,6 +67,20 @@ class Submission < ApplicationRecord
         ParticipantBadgeJob.perform_later(name: "onsubmission", submission_id: id, grading_status_cd: grading_status_cd)
       end
       Notification::SubmissionNotificationJob.perform_later(id)
+
+      if grading_status_cd == 'graded' || grading_status_cd == 'failed'
+        unless self.mixpanel_sent
+          participant = self.participant
+          Mixpanel::EventJob.perform_later(participant, "Submission Complete", {
+            'Submission ID': self.id,
+            'Participant ID': participant.present? ? participant.uuid : "",
+            'Challenge': self.challenge.slug,
+            'Grading Status': grading_status_cd
+          })
+          self.mixpanel_sent = true
+          self.save
+        end
+      end
     end
   end
 

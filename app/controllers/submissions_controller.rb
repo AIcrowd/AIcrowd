@@ -132,7 +132,30 @@ class SubmissionsController < ApplicationController
     validate_submission_file_presence
     if @submission.errors.none? && @submission.save
       SubmissionGraderJob.perform_later(@submission.id)
-
+      Mixpanel::EventJob.perform_later(current_participant, "Submission Create", {
+        'Submission ID': @submission.id,
+        'Participant ID': current_participant.uuid,
+        'Challenge': @challenge.slug,
+        'Submission received from': is_api_request? ? "api" : "web"
+      })
+      team = Team.includes([:challenge, :participants])
+                 .where(challenges: { slug: @challenge.slug })
+                 .where(participants: { id: current_participant.id }).first
+      if team.present?
+        team.team_participants.each do |team_participant|
+          if current_participant.id == team_participant.participant_id
+            next
+          end
+          participant = Participant.find_by(id: team_participant.participant_id)
+          Mixpanel::EventJob.perform_later(participant, "Submission Create Proxy", {
+            'Submission ID': @submission.id,
+            'Participant ID': participant.uuid,
+            'Team ID': team.name,
+            'Challenge': @challenge.slug,
+            'Submission received from': is_api_request? ? "api" : "web"
+          })
+        end
+      end
       non_exclusive_meta_challenges = ChallengeProblems.where(problem_id: @challenge.id, exclusive: false)
       if non_exclusive_meta_challenges.present?
         challenge = non_exclusive_meta_challenges.first.challenge
