@@ -2,13 +2,13 @@ ActiveAdmin.register Submission do
   belongs_to :challenge, parent_class: Challenge
   navigation_menu :challenge
 
-  sidebar "Submission versions", only: [:show, :edit] do
-    ul do
-      submission.versions.reverse.each do |version|
-        li link_to "#{version.created_at}", admin_paper_trail_version_path(version)
-      end
-    end
-  end
+  # sidebar "Submission versions", only: [:show, :edit] do
+  #   ul do
+  #     submission.versions.reverse.each do |version|
+  #       li link_to "#{version.created_at}", admin_paper_trail_version_path(version)
+  #     end
+  #   end
+  # end
 
   filter :id
   filter :participant_id
@@ -50,6 +50,10 @@ ActiveAdmin.register Submission do
 
     def permitted_params
       params.permit!
+    end
+
+    def destroy_resource(object)
+      object.update!(deleted: true)
     end
   end
 
