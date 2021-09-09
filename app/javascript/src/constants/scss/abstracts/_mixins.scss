@@ -1,0 +1,56 @@
+@import "./_variables.scss";
+
+//
+// Mixins
+//
+
+// Breakpoints
+@mixin media-query($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// Transition
+@mixin transition {
+  transition: 0.2s ease;
+}
+
+// CSS Grid
+@mixin column-gap {
+  grid-column-gap: 20px;
+  @include media-query("small-medium") {
+    grid-column-gap: 16px;
+  }
+  @include media-query("small") {
+    grid-column-gap: 12px;
+  }
+}
+
+@mixin row-gap {
+  grid-row-gap: 20px;
+  @include media-query("small-medium") {
+    grid-row-gap: 16px;
+  }
+  @include media-query("small") {
+    grid-row-gap: 12px;
+  }
+}
+
+$gradient-color: linear-gradient(141.26295deg, #f0524d, #f04d7e, #ec4cb1, #e94be4, #bc4be9, #894be9, #884be9);
+
+@mixin gradient-text {
+  background-image: linear-gradient(141.26295deg, #f0524d, #f04d7e, #ec4cb1, #e94be4, #bc4be9, #894be9, #884be9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

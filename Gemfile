@@ -92,7 +92,7 @@ gem 'turbolinks', '~> 5.1'
 gem 'uglifier', '~> 4.1.10'
 gem 'validate_url'
 gem 'valid_email2'
-gem 'webpacker', '~> 2.0'
+gem 'webpacker', '~> 5.0'
 gem "select2-rails"
 gem 'dalli', '~> 2.7', '>= 2.7.10' # Memcache client
 gem 'csv'
@@ -110,6 +110,8 @@ gem 'gemoji-parser'
 gem 'clipboard-rails'
 gem 'puma_worker_killer'
 gem 'pretender'
+gem 'merit'
+gem 'react-rails'
 
 # HTTP clients
 gem 'faraday', '~> 1.0'

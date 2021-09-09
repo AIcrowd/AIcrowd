@@ -97,6 +97,7 @@ GEM
       airbrake-ruby (~> 5.1)
     airbrake-ruby (5.1.0)
       rbtree3 (~> 0.5)
+    ambry (1.0.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (9.0.0)
@@ -116,6 +117,10 @@ GEM
     aws-sdk-resources (2.11.190)
       aws-sdk-core (= 2.11.190)
     aws-sigv4 (1.0.3)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     barnes (0.0.8)
       multi_json (~> 1)
       statsd-ruby (~> 1.1)
@@ -195,7 +200,7 @@ GEM
     commontator (6.3.0)
       rails (>= 5.2)
       will_paginate
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.9)
     connection_pool (2.2.2)
     countries (2.1.4)
       i18n_data (~> 0.8.0)
@@ -242,7 +247,7 @@ GEM
       railties (>= 4.2)
     dry-inflector (0.1.2)
     errbase (0.1.1)
-    erubi (1.9.0)
+    erubi (1.10.0)
     et-orbi (1.2.2)
       tzinfo
     ethon (0.12.0)
@@ -478,7 +483,7 @@ GEM
     httparty (0.16.3)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.8.2)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
     image_optimizer (1.8.0)
@@ -569,7 +574,7 @@ GEM
       actionpack (>= 3.0)
       activerecord (>= 3.0)
       railties (>= 3.0)
-    loofah (2.3.1)
+    loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.13)
@@ -579,6 +584,9 @@ GEM
       mimemagic (~> 0.3.2)
     maxminddb (0.1.22)
     memory_profiler (0.9.12)
+    merit (4.0.2)
+      ambry (~> 1.0.0)
+      zeitwerk
     meta_request (0.6.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (>= 1.1, < 3)
@@ -593,10 +601,10 @@ GEM
       rake
     mini_magick (4.9.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.5.1)
+    mini_portile2 (2.6.1)
     mini_racer (0.2.9)
       libv8 (>= 6.9.411)
-    minitest (5.14.1)
+    minitest (5.14.4)
     mixpanel-ruby (2.2.2)
     model_2_factory-rails (0.0.3)
       actionpack (>= 3.0)
@@ -607,7 +615,7 @@ GEM
       railties (>= 3.1)
     money (6.13.1)
       i18n (>= 0.6.4, <= 2)
-    multi_json (1.13.1)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustache (1.1.1)
@@ -615,8 +623,8 @@ GEM
     nenv (0.3.0)
     net-ssh (5.0.2)
     nio4r (2.5.2)
-    nokogiri (1.11.4)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -690,12 +698,14 @@ GEM
       activesupport (>= 3.0.0)
     quantile (0.2.1)
     racc (1.5.2)
-    rack (2.1.4)
+    rack (2.2.3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-cors (1.0.5)
       rack (>= 1.6.0)
     rack-protection (2.0.4)
+      rack
+    rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -734,7 +744,7 @@ GEM
       activesupport (>= 3.2)
       choice (~> 0.2.0)
       ruby-graphviz (~> 1.2)
-    rails-html-sanitizer (1.3.0)
+    rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     railties (5.2.2.1)
       actionpack (= 5.2.2.1)
@@ -759,6 +769,12 @@ GEM
       nokogiri (~> 1.5)
       optimist (~> 3.0)
     rdoc (4.3.0)
+    react-rails (2.6.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     recaptcha (5.5.0)
       json
     redis (4.1.3)
@@ -858,6 +874,7 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    semantic_range (3.0.0)
     shellany (0.0.1)
     sidekiq (5.1.3)
       concurrent-ruby (~> 1.0)
@@ -916,7 +933,7 @@ GEM
     turbolinks-source (5.2.0)
     typhoeus (1.3.1)
       ethon (>= 0.9.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
@@ -948,10 +965,11 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (2.0)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
+    webpacker (5.4.2)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -962,6 +980,7 @@ GEM
     xmlrpc (0.3.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -1038,6 +1057,7 @@ DEPENDENCIES
   lol_dba
   loofah (>= 2.2.3)
   maxminddb
+  merit
   meta_request
   mini_magick
   mini_racer
@@ -1071,6 +1091,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-erd
   ransack
+  react-rails
   recaptcha
   remotipart
   rollbar
@@ -1112,7 +1133,7 @@ DEPENDENCIES
   web-console
   webdrivers
   webmock (~> 3.7, >= 3.7.6)
-  webpacker (~> 2.0)
+  webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 2.5.5p157

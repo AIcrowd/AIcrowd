@@ -1,0 +1,124 @@
+@import "../../../constants/scss/abstracts/__abstracts-dir.scss";
+@import "../../../styles/base/__base-dir.scss";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 403px;
+  height: 480px;
+  padding: 21px;
+  position: relative;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+
+  i {
+    position: absolute;
+    top: 33px;
+    right: 33px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .iconWrapper {
+    width: 126px;
+    height: 126px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @keyframes slide {
+      from {
+        left: -86px;
+        top: 4px;
+      }
+      to {
+        left: 63px;
+        top: 83px;
+      }
+    }
+
+    .shineWrapper {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      transform: rotate(-52.43deg);
+      left: -86px;
+      top: 4px;
+      animation-name: slide;
+      animation-duration: 1.3s;
+      animation-delay: 1s;
+      animation-timing-function: ease-in-out;
+      span {
+        width: 130px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.4);
+
+        &:nth-child(1) {
+          height: 5px;
+          margin-bottom: 8px;
+        }
+        &:nth-child(2) {
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      width: 106px;
+    }
+    33% {
+      width: 118px;
+    }
+    67% {
+      width: 94px;
+    }
+    100% {
+      width: 106px;
+    }
+  }
+
+  .badgeIcon {
+    width: 106px;
+    animation-name: pop;
+    animation-duration: 0.9s;
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in-out;
+  }
+
+  .descriptionText {
+    font-size: 14px;
+    line-height: 19px;
+    color: #747474;
+    text-align: center;
+    padding: 18px 0px 35px 0px;
+  }
+
+  .titleText {
+    font-weight: 500;
+    font-size: 19px;
+    color: #1f1f1f;
+    line-height: 23px;
+    padding-top: 35px;
+  }
+
+  .socialText {
+    @extend .descriptionText;
+    padding: 0px 0px 10px 0px;
+  }
+
+  .socialIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 115px;
+    padding-bottom: 35px;
+    img {
+      width: 22px;
+      cursor: pointer;
+    }
+  }
+}

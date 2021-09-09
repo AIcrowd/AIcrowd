@@ -1,0 +1,25 @@
+//
+// Variables
+//
+
+// Breakpoints
+$breakpoints: (
+  "x-large": (
+    max-width: 1439.98px,
+  ),
+  "large": (
+    max-width: 1199.98px,
+  ),
+  "medium": (
+    max-width: 991.98px,
+  ),
+  "small-medium": (
+    max-width: 639.98px,
+  ),
+  "small": (
+    max-width: 575.98px,
+  ),
+  "x-small": (
+    max-width: 399.98px,
+  ),
+) !default;

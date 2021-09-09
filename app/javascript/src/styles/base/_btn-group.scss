@@ -1,0 +1,11 @@
+.btn-group {
+  display: flex;
+}
+
+.btn-group > * {
+  margin-right: 6px;
+}
+
+.btn:last-of-type > * {
+  margin-right: 0;
+}

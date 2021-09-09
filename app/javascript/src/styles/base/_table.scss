@@ -1,0 +1,43 @@
+@import "./_all_mixins.scss";
+.table {
+  border-collapse: collapse;
+  vertical-align: middle;
+  width: 100%;
+  th {
+    color: var(--color-text-light);
+    font-weight: 400;
+    text-align: left;
+  }
+  th,
+  td {
+    border-top: 1px solid var(--color-border-light);
+    padding: 12px 20px 12px 0;
+    white-space: nowrap;
+    @include column-gap;
+    @include media-query("medium") {
+      padding: 10px 20px 10px 0;
+    }
+    @include media-query("small-medium") {
+      padding: 8px 16px 8px 0;
+    }
+    @include media-query("small-medium") {
+      padding: 8px 12px 8px 0;
+    }
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+  .header-link {
+    color: var(--color-text-light);
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .submission-link {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

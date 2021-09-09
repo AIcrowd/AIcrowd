@@ -51,3 +51,10 @@ db/crowdai_aicrowd_data_migration/task_dataset_files.json
 
 # For rubocop temp files
 spec/tmp
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

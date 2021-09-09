@@ -1,0 +1,19 @@
+@import "./_all_mixins.scss";
+.section-sub-header-display {
+  align-items: center;
+  display: flex;
+  padding-bottom: 26px;
+  @include media-query("medium") {
+    padding-bottom: 22px;
+  }
+  .section-title {
+    flex: 2 0 auto;
+    line-height: 36px;
+    @include media-query("small-medium") {
+      line-height: 32px;
+    }
+  }
+  .section-link {
+    flex: 0 0 auto;
+  }
+}

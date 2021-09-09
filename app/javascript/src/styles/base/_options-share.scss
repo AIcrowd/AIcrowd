@@ -1,0 +1,21 @@
+@import "./_all_mixins.scss";
+.options-share {
+  border-top: 1px solid var(--color-border-light);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0 40px;
+  @include media-query("medium") {
+    padding: 16px 0 32px;
+  }
+  @include media-query("small-medium") {
+    padding: 12px 0 24px;
+  }
+  .options-share-social {
+    a {
+      margin-right: 4px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import "./_all_mixins.scss";
+@import "./_utilities.scss";
+
+.masthead-organizer {
+  .masthead-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr) [24];
+    grid-template-columns: repeat(24, 1fr);
+    padding: 60px 0;
+    @include column-gap;
+    @include media-query("large") {
+      padding: 48px 0;
+    }
+    @include media-query("medium") {
+      display: block;
+      padding: 40px 0;
+    }
+    @include media-query("small-medium") {
+      padding: 32px 0 20px 0;
+    }
+    .masthead-left {
+      grid-area: 1 / 1 / 2 / 5;
+      @include media-query("medium") {
+        display: none;
+      }
+      .masthead-link {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .la-arrow-left {
+        margin-right: 8px;
+      }
+    }
+    .masthead-main {
+      display: flex;
+      grid-area: 1 / 5 / 2 / 25;
+      .avatar {
+        height: auto;
+        margin-right: 12px;
+        margin-top: -6px;
+        width: 48px;
+        @include media-query("large") {
+          margin-top: -4px;
+          width: 44px;
+        }
+        @include media-query("medium") {
+          width: 40px;
+        }
+        @include media-query("small-medium") {
+          margin-top: -2px;
+          width: 32px;
+        }
+      }
+    }
+    .masthead-options {
+      display: flex;
+      grid-area: 2 / 5 / 2 / 25;
+      margin-top: 40px;
+      @extend .border-padding-top;
+      @include media-query("medium") {
+        margin-top: 32px;
+      }
+      @include media-query("small-medium") {
+        margin-top: 24px;
+      }
+    }
+    .masthead-options * {
+      margin-right: 8px;
+    }
+  }
+  .masthead-link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

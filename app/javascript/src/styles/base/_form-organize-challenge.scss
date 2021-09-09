@@ -1,0 +1,8 @@
+@import "./_all_mixins.scss";
+.form-organize-challenge {
+  margin-top: 60px;
+  max-width: 750px;
+  @include media-query("small-medium") {
+    margin-top: 48px;
+  }
+}

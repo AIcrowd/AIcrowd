@@ -124,4 +124,8 @@ function hidegrowl(){
     $('.growl').hide()
 };
 
+window.hideBadgesModal = function() {
+    $('#badges-modal').modal('hide');
+}
+
 setInterval(hidegrowl, 15000);

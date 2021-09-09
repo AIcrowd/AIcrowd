@@ -1,5 +1,6 @@
 <% if current_participant.present? %>
   <% if follow.present? %>
+    <%= render partial: 'shared/badge_popup' %>
     <%= link_to "Unfollow",
                 follows_destroy_follow_path(followable, follow.id, other_participant, active_tab),
                 id:     follow_link_id(followable),

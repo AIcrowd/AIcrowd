@@ -1,0 +1,41 @@
+@import "./_all_mixins.scss";
+.preview-user-detail {
+  position: relative;
+  .user-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  a {
+    pointer-events: all;
+  }
+  .user-content {
+    align-items: center;
+    display: flex;
+    line-height: 1.2;
+  }
+  .user-avatar {
+    flex: 0 0 auto;
+    margin-right: 8px;
+  }
+  .user-details {
+    color: var(--color-text-light);
+    display: block;
+  }
+  .badge-organizer {
+    margin-left: 6px;
+  }
+  .user-email {
+    font-weight: 600;
+  }
+  &:hover {
+    .user-name {
+      text-decoration: underline;
+    }
+    .user-email {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import "./_all_mixins.scss";
+.sub-nav-mobile {
+  .select-sub-nav:last-of-type {
+    border-bottom: 1px solid var(--color-border-light);
+  }
+}

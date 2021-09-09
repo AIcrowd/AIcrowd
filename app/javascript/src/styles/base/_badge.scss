@@ -1,0 +1,21 @@
+@import "./_all_mixins.scss";
+// Badge base styling
+
+@mixin badge-base {
+  align-items: center;
+  border-radius: 9px;
+  display: inline-flex;
+  height: 18px;
+  line-height: 1;
+  padding: 0 8px 0 3px;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+@mixin badge-dot-base {
+  border-radius: 50%;
+  display: inline-block;
+  height: 12px;
+  margin-right: 4px;
+  width: 12px;
+}

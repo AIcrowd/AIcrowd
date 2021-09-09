@@ -1,0 +1,43 @@
+@import "./_all_mixins.scss";
+@import "./_utilities.scss";
+
+.section-edit-challenge {
+  @extend .border-padding-top;
+  @include media-query("medium") {
+    border-top: none !important;
+  }
+  .header-edit-challenge {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-md {
+    max-width: 750px;
+  }
+  .form-accordion {
+    clear: both;
+    display: block;
+    @extend .border-padding-top;
+    &:first-of-type {
+      margin-top: 32px;
+      @include media-query("small-medium") {
+        margin-top: 24px;
+      }
+    }
+    .switch-expand {
+      float: right;
+    }
+  }
+  .form-group-flex {
+    align-items: flex-start;
+    display: flex;
+    @include column-gap;
+    .textbox {
+      margin-top: -1px;
+      width: 30%;
+    }
+    .select {
+      width: 70%;
+    }
+  }
+}

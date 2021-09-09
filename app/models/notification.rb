@@ -19,7 +19,8 @@ class Notification < ApplicationRecord
     'Grading Failed' => :grading_failed,
     'Leaderboard'    => :leaderboard,
     'Article'        => :article,
-    'Discourse'      => :discourse
+    'Discourse'      => :discourse,
+    'Badge'          => :badge
   }.freeze
 
   def read?

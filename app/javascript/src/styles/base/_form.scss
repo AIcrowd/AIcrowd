@@ -1,0 +1,134 @@
+@import "./_all_mixins.scss";
+.form {
+  .form-row {
+    display: flex;
+    @include column-gap;
+    @include media-query("small") {
+      display: block;
+    }
+    .form-group {
+      width: 50%;
+      @include media-query("small") {
+        width: 100%;
+      }
+    }
+  }
+  .form-group,
+  .form-group-file,
+  .warning-bar,
+  .info-bar {
+    margin-bottom: 28px;
+    @include media-query("small-medium") {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      margin-bottom: 16px;
+      @include media-query("small-medium") {
+        margin-bottom: 12px;
+      }
+    }
+    .select + .btn-primary,
+    .select + .btn-secondary {
+      margin-top: 16px;
+      @include media-query("small-medium") {
+        margin-top: 12px;
+      }
+    }
+  }
+  .form-group-file {
+    margin-bottom: 40px;
+    @include media-query("small-medium") {
+      margin-bottom: 30px;
+    }
+  }
+
+  // Use for single-column forms
+  .form-group-md {
+    max-width: 400px;
+  }
+
+  .form-group-lg {
+    max-width: 750px;
+  }
+
+  .form-title {
+    margin-bottom: 28px;
+    @include media-query("small-medium") {
+      margin-bottom: 20px;
+    }
+  }
+
+  .form-error {
+    border: 1px solid var(--color-accent);
+  }
+
+  .form-help,
+  .form-error-text {
+    color: var(--color-text-light);
+    display: block;
+    margin-top: 8px;
+  }
+
+  .form-error-text {
+    color: var(--color-accent-text);
+  }
+
+  .form-paragraph {
+    margin: 0 0 28px;
+    @include media-query("small-medium") {
+      margin-bottom: 20px;
+    }
+  }
+
+  h2 + .form-paragraph,
+  h3 + .form-paragraph,
+  h4 + .form-paragraph {
+    margin-top: -20px;
+    @include media-query("small") {
+      margin-top: -12px;
+    }
+  }
+
+  h4.form-title {
+    color: var(--color-accent-text);
+  }
+
+  .form-link {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+    .las {
+      margin-right: 6px;
+    }
+  }
+
+  fieldset {
+    border: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  fieldset + fieldset {
+    margin-top: 32px;
+    @include media-query("small-medium") {
+      margin-top: 28px;
+    }
+  }
+
+  .form-title .info-bar,
+  .form-title .warning-bar {
+    margin-top: -12px;
+  }
+
+  .form-hr {
+    background-color: #e7e7e7;
+    border: 0;
+    height: 1px;
+    margin: 20px 0 28px 0;
+    padding: 0;
+    @include media-query("small-medium") {
+      margin-bottom: 20px;
+    }
+  }
+}

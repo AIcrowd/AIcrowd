@@ -83,21 +83,6 @@
     </div>
     <%= render partial: 'layouts/footer' %>
     <%= render partial: 'layouts/google_analytics_body' %>
-    <% current_participant&.awaiting_toasts.to_a.each do |toast| %>
-    <div class="growl growl-large ontop">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-
-      <div class="growl-notice">
-        Good job! You've been awarded: <%= toast['name'] %>
-      </div>
-
-      <div class="badge badge-achievement-gold">
-        <%= toast['description'] %>
-      </div>
-    </div>
-    <% end %>
-  <% current_participant&.toggle_toasts %>
+    <%= render partial: 'shared/badge_popup' %>
   </body>
 </html>

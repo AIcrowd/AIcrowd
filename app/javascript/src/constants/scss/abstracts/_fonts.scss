@@ -1,0 +1,59 @@
+// Fonts
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300&display=swap");
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Archivo Regular"), local("Archivo-Regular"), url("/assets/fonts/Archivo-Regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-Regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: italic;
+  font-weight: 400;
+  src: local("Archivo Italic"), local("Archivo-Italic"), url("/assets/fonts/Archivo-Italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-Italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Archivo Medium"), local("Archivo-Medium"), url("/assets/fonts/Archivo-Medium.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-Medium.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: italic;
+  font-weight: 500;
+  src: local("Archivo MediumItalic"), local("Archivo-MediumItalic"),
+    url("/assets/fonts/Archivo-MediumItalic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-MediumItalic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: normal;
+  font-weight: 600;
+  src: local("Archivo SemiBold"), local("Archivo-SemiBold"), url("/assets/fonts/Archivo-SemiBold.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-SemiBold.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-display: auto;
+  font-style: italic;
+  font-weight: 600;
+  src: local("Archivo SemiBoldItalic"), local("Archivo-SemiBoldItalic"),
+    url("/assets/fonts/Archivo-SemiBoldItalic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/Archivo-SemiBoldItalic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

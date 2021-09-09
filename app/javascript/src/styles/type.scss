@@ -1,0 +1,147 @@
+@import "../constants/scss/abstracts/__abstracts-dir.scss";
+
+//
+// Type
+//
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+  @include media-query("large") {
+    font-size: 14px;
+  }
+  @include media-query("small-medium") {
+    font-size: 13px;
+  }
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.font-size-sm {
+  font-size: 15px;
+  @include media-query("small-medium") {
+    font-size: 14px;
+  }
+}
+
+.font-size-md {
+  font-size: 19px;
+  @include media-query("large") {
+    font-size: 18px;
+  }
+  @include media-query("small-medium") {
+    font-size: 17px;
+  }
+  @include media-query("small") {
+    font-size: 16px;
+  }
+}
+
+.font-size-lg {
+  font-size: 24px;
+  line-height: 1.33;
+  @include media-query("large") {
+    font-size: 23px;
+  }
+  @include media-query("small-medium") {
+    font-size: 21px;
+  }
+  @include media-query("small") {
+    font-size: 19px;
+  }
+}
+
+.lead {
+  @extend .font-size-lg;
+}
+
+.section-main > p {
+  margin-top: 0;
+}
+
+// Headings
+h1,
+h2,
+h3 {
+  color: var(--color-text);
+  line-height: 1.125;
+  margin: 0;
+  text-rendering: geometricPrecision;
+}
+
+h1 {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  @media screen and (min-width: 320px) {
+    font-size: calc(24px + 6 * ((100vw - 320px) / 680));
+  }
+  @media screen and (min-width: 1680px) {
+    font-size: 36px;
+  }
+}
+
+h2 {
+  font-weight: 600;
+  line-height: 1.063;
+  @media screen and (min-width: 320px) {
+    font-size: calc(20px + 2 * ((100vw - 320px) / 680));
+  }
+  @media screen and (min-width: 1680px) {
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.063;
+  @include media-query("medium") {
+    font-size: 17px;
+  }
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.063;
+  margin: 0;
+  @include media-query("medium") {
+    font-size: 14px;
+  }
+  @include media-query("small-medium") {
+    font-size: 14px;
+  }
+}
+
+.display-1 {
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  @media screen and (min-width: 320px) {
+    font-size: calc(36px + 12 * ((100vw - 320px) / 680));
+  }
+  @media screen and (min-width: 1680px) {
+    font-size: 60px;
+  }
+}
+
+.display-2 {
+  font-weight: 500;
+  line-height: 1.063;
+  @media screen and (min-width: 320px) {
+    font-size: calc(24px + 6 * ((100vw - 320px) / 680));
+  }
+  @media screen and (min-width: 1680px) {
+    font-size: 36px;
+  }
+}

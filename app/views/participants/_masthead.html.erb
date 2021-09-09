@@ -1,37 +1,45 @@
-<!-- masthead – user -->
+<!-- masthead – user -->
 <div class="masthead masthead-user">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
         <div class="d-flex">
-          <%= participant_avatar participant %>
-          <div class="masthead-content">
-            <div class="d-flex">
-              <%= participant_avatar participant, "avatar-sm" %>
-              <h1>
-                <%= participant.name %>
-                <%= render partial: 'participants/show_reputation', locals: { participant: participant } %>
-                <%= render partial: 'participants/show_temporary_reputation', locals: { participant: participant } %>
-              </h1>
+          <div class="column" style="align-self: flex-end;margin-right: 40px;">
+            <div class="row"><%= participant_avatar participant %></div>
 
-              <% if current_participant.present? && current_participant != participant %>
-                <div class="masthead-info-item follow-participant">
-                  <%= render partial: 'shared/challenges/follow_button', locals: { followable: participant, follow: @follow, other_participant: participant, active_tab: false } %>
-                </div>
+            <div class="row ml-3 mt-3"><%= @participant.followers_participant_count %> Follower</div>
+            <div class="row ml-3"><%= @participant.following_participant_count %> Following</div>
+            <% if current_participant.present? && current_participant != participant %>
+              <div class="masthead-info-item follow-participant row ml-2 mt-2">
+                <%= render partial: 'shared/challenges/follow_button', locals: { followable: participant, follow: @follow, other_participant: participant, active_tab: false } %>
+              </div>
+            <% end %>
+          </div>
+          <div class="masthead-content">
+            <div class="column">
+              <div class="row"><h1><%= participant.name %></h1></div>
+              <% if participant.first_name.present? || participant.last_name.present? %>
+                <div class="row"><h3><%= participant.first_name %> <%= participant.last_name %></h3></div>
               <% end %>
             </div>
 
             <div class="masthead-info">
-              <% if participant.first_name.present? || participant.last_name.present? %>
+              <% if participant %>
                 <div class="masthead-info-item">
                   <header>
-                    <h4>Name</h4>
+                    <h4>Rating</h4>
                   </header>
-                  <span><%= participant.first_name %></span>
-                  <span><%= participant.last_name %></span>
+                  <span>560</span>
                 </div>
               <% end %>
-
+              <% if participant %>
+                <div class="masthead-info-item">
+                  <header>
+                    <h4>Global Rank</h4>
+                  </header>
+                  <span>60</span>
+                </div>
+              <% end %>
               <% if participant.affiliation.present? %>
                 <div class="masthead-info-item">
                   <header>
@@ -71,7 +79,7 @@
                 <header>
                   <h4>Badges</h4>
                 </header>
-                <div class="badge badge-achievement-gold" style = "margin-right: 5px;"><%= participant.badges.badges_stat_count[BadgeType.gold&.id].to_i %></div><div class="badge badge-achievement-silver" style = "margin-right: 5px;"><%= participant.badges.badges_stat_count[BadgeType.silver&.id].to_i %></div><div class="badge badge-achievement-bronze" style = "margin-right: 5px;"><%= participant.badges.badges_stat_count[ BadgeType.bronze&.id].to_i %></div>
+                <div class="badge badge-achievement-gold" style = "margin-right: 5px;"><%= participant.aicrowd_user_badges.badges_stat_count[BadgeType.gold&.id].to_i %></div><div class="badge badge-achievement-silver" style = "margin-right: 5px;"><%= participant.aicrowd_user_badges.badges_stat_count[BadgeType.silver&.id].to_i %></div><div class="badge badge-achievement-bronze" style = "margin-right: 5px;"><%= participant.aicrowd_user_badges.badges_stat_count[ BadgeType.bronze&.id].to_i %></div>
               </div>
 
               <% if participant.twitter.present? || participant.github.present? || participant.linkedin.present? || participant.website.present? %>
@@ -79,26 +87,28 @@
                   <header>
                     <h4>Connect</h4>
                   </header>
-                  <% if participant.twitter.present? %>
-                    <%= link_to url_for(participant.twitter) do %>
-                      <span>Twitter <%= image_tag '/assets/img/icon-external-link.svg' %></span>
+                  <div class="d-flex">
+                    <% if participant.twitter.present? %>
+                      <%= link_to url_for(participant.twitter) do %>
+                        <span class="mr-3"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                  <% if participant.github.present? %>
-                    <%= link_to url_for(participant.github) do %>
-                      <span>GitHub <%= image_tag '/assets/img/icon-external-link.svg' %></span>
+                    <% if participant.github.present? %>
+                      <%= link_to url_for(participant.github) do %>
+                        <span class="mr-3"><i class="fa fa-github" aria-hidden="true"></i></span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                  <% if participant.linkedin.present? %>
-                    <%= link_to url_for(participant.linkedin) do %>
-                      <span>LinkedIn <%= image_tag '/assets/img/icon-external-link.svg' %></span>
+                    <% if participant.linkedin.present? %>
+                      <%= link_to url_for(participant.linkedin) do %>
+                        <span class="mr-3"><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                  <% if participant.website.present? %>
-                    <%= link_to url_for(participant.website) do %>
-                      <span>Portfolio <%= image_tag '/assets/img/icon-external-link.svg' %></span>
+                    <% if participant.website.present? %>
+                      <%= link_to url_for(participant.website) do %>
+                        <span class="mr-3"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                      <% end %>
                     <% end %>
-                  <% end %>
+                  </div>
                 </div>
               <% end %>
             </div>

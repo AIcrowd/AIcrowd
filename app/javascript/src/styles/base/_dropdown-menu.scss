@@ -1,0 +1,52 @@
+@import "./_all_mixins.scss";
+.dropdown-menu {
+  background: var(--color-page-bg);
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.3);
+  display: none;
+  position: absolute;
+  width: 200px;
+  z-index: 10;
+  .dropdown-menu-list {
+    margin: 0;
+    padding: 8px 8px 0;
+    @include media-query("small-medium") {
+      padding: 4px;
+    }
+    .dropdown-menu-divider:first-of-type {
+      margin: 8px -8px !important;
+      @include media-query("small-medium") {
+        margin: 4px -4px !important;
+      }
+    }
+  }
+  .dropdown-menu-item {
+    list-style-type: none;
+    text-decoration-style: none;
+  }
+  .dropdown-menu-link {
+    border-radius: 3px;
+    display: block;
+    padding: 5px 8px;
+    @include transition;
+    &:hover {
+      background-color: var(--color-bg-light);
+    }
+  }
+  .dropdown-menu-follow {
+    color: var(--color-text);
+    padding: 8px 16px 16px;
+  }
+  .dropdown-menu-title {
+    margin-bottom: 12px;
+  }
+  .dropdown-menu-divider {
+    background-color: var(--color-border-light);
+    border: 0;
+    height: 1px;
+    margin: 8px 0;
+    padding: 0;
+    @include media-query("small-medium") {
+      margin: 4px 0;
+    }
+  }
+}

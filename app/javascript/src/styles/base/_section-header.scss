@@ -1,0 +1,25 @@
+@import "./_all_mixins.scss";
+.section-header {
+  align-items: center;
+  display: flex;
+  padding: 20px 0 28px;
+  @include media-query("medium") {
+    border: none;
+    padding: 16px 0 24px;
+  }
+  @include media-query("small-medium") {
+    padding: 20px 0;
+  }
+  .section-title {
+    flex: 2 0 auto;
+  }
+  .btn-secondary,
+  .btn-add {
+    flex: 0 0 auto;
+  }
+}
+
+.border-padding-top > .section-header,
+.section-sub > .section-header {
+  padding-top: 0 !important;
+}

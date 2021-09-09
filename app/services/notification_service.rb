@@ -9,7 +9,7 @@ class NotificationService
   end
 
   def call
-    send(@notification_type) if ['graded', 'failed', 'leaderboard'].include?(@notification_type)
+    send(@notification_type) if ['graded', 'failed', 'leaderboard', 'badge'].include?(@notification_type)
   end
 
   private
@@ -98,6 +98,24 @@ class NotificationService
         thumbnail_url:     thumb,
         notification_url:  link,
         challenge_id:      @notifiable.challenge.id,
+        is_new:            true)
+  end
+
+  def badge
+    message = @notifiable.description
+    thumb = @notifiable.image
+    link = participant_path(@participant)
+
+    return if @participant.notifications.exists?(notification_type: 'badge', message: message)
+
+    Notification
+      .create!(
+        participant:       @participant,
+        notifiable:        @notifiable,
+        notification_type: @notification_type,
+        message:           message,
+        thumbnail_url:     thumb,
+        notification_url:  link,
         is_new:            true)
   end
 

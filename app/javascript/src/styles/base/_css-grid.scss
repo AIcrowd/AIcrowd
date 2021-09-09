@@ -1,0 +1,58 @@
+@import "./_all_mixins.scss";
+//
+// CSS Grid
+//
+
+.section {
+  .section-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr) [24];
+    grid-template-columns: repeat(24, 1fr);
+    @include column-gap;
+    .section-left {
+      grid-area: 1 / 1 / 2 / 5;
+      @include media-query("medium") {
+        display: none;
+      }
+    }
+    .section-main {
+      grid-area: 1 / 5 / 2 / 25;
+      @include media-query("medium") {
+        grid-area: 2 / 1 / 3 / 25;
+      }
+    }
+  }
+}
+
+.section + .section {
+  margin-top: 40px;
+}
+
+.section-col-3 {
+  .section-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr) [24];
+    grid-template-columns: repeat(24, 1fr);
+    @include column-gap;
+    @include media-query("medium") {
+      display: block;
+    }
+    .section-left {
+      grid-area: 1 / 1 / 2 / 5;
+      @include media-query("medium") {
+        display: none;
+      }
+    }
+    .section-main {
+      grid-area: 1 / 5 / 2 / 19;
+    }
+    .section-right {
+      grid-area: 1 / 19 / 2 / 25;
+      @include media-query("medium") {
+        display: none;
+      }
+    }
+  }
+}

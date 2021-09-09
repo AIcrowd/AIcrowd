@@ -1,0 +1,177 @@
+@import "./_all_mixins.scss";
+@import "./_type.scss";
+
+
+.masthead-challenge {
+  padding-bottom: 40px;
+  @include media-query("medium") {
+    padding-bottom: 32px;
+  }
+  @include media-query("small-medium") {
+    padding-bottom: 24px;
+  }
+  .masthead-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr) [24];
+    grid-template-columns: repeat(24, 1fr);
+    padding-top: 60px;
+    @include column-gap;
+    @include media-query("large") {
+      padding-top: 48px;
+    }
+    @include media-query("medium") {
+      padding-top: 40px;
+    }
+    @include media-query("small-medium") {
+      padding-top: 32px;
+    }
+    .masthead-left {
+      grid-area: 1 / 1 / 4 / 5;
+      @include media-query("medium") {
+        display: none;
+      }
+      .masthead-link {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .la-arrow-left {
+        margin-right: 8px;
+        border: 3px solid red;
+      }
+    }
+    .masthead-main {
+      grid-area: 1 / 5 / 2 / 19;
+      padding-bottom: 40px;
+      @include media-query("medium") {
+        grid-area: 1 / 1 / 2 / 25;
+        padding-bottom: 32px;
+      }
+      @include media-query("small-medium") {
+        grid-area: 1 / 1 / 2 / 25;
+      }
+    }
+    .masthead-badges > div {
+      @include media-query("small-medium") {
+        display: none;
+        &:last-of-type {
+          display: inline-flex;
+        }
+      }
+    }
+    .masthead-section {
+      border-top: 1px solid var(--color-border-light);
+      padding: 20px 0 40px;
+      @include media-query("medium") {
+        padding: 16px 0 32px;
+      }
+      @include media-query("small-medium") {
+        padding: 12px 0 24px;
+      }
+    }
+    .masthead-section:nth-of-type(3) {
+      grid-area: 2 / 5 / 3 / 9;
+      @include media-query("medium") {
+        grid-area: 2 / 1 / 3 / 7;
+      }
+      @include media-query("small-medium") {
+        grid-area: 2 / 1 / 3 / 25;
+      }
+    }
+    .masthead-section:nth-of-type(4) {
+      grid-area: 2 / 9 / 3 / 13;
+      overflow: hidden;
+      @include media-query("medium") {
+        grid-area: 2 / 7 / 3 / 13;
+      }
+      @include media-query("small-medium") {
+        grid-area: 3 / 1 / 4 / 13;
+      }
+    }
+    .masthead-section:nth-of-type(5) {
+      grid-area: 2 / 13 / 3 / 15;
+      @include media-query("medium") {
+        grid-area: 2 / 13 / 3 / 17;
+      }
+      @include media-query("small-medium") {
+        grid-area: 3 / 13 / 4 / 25;
+      }
+    }
+    .masthead-section:nth-of-type(6) {
+      grid-area: 2 / 15 / 3 / 17;
+      @include media-query("medium") {
+        grid-area: 2 / 17 / 3 / 21;
+      }
+      @include media-query("small-medium") {
+        grid-area: 4 / 1 / 5 / 13;
+      }
+    }
+    .masthead-section:nth-of-type(7) {
+      grid-area: 2 / 17 / 3 / 19;
+      @include media-query("medium") {
+        grid-area: 2 / 21 / 3 / 25;
+      }
+      @include media-query("small-medium") {
+        grid-area: 4 / 13 / 5 / 25;
+      }
+    }
+    .masthead-options {
+      grid-area: 3 / 5 / 4 / 19;
+      @include media-query("medium") {
+        grid-area: 3 / 1 / 4 / 25;
+      }
+      @include media-query("small-medium") {
+        grid-area: 5 / 1 / 6 / 25;
+      }
+    }
+    .masthead-image {
+      grid-area: 1 / 19 / 4 / 25;
+      line-height: 0;
+      position: relative;
+      @include media-query("medium") {
+        display: none;
+      }
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+      .sticker {
+        position: absolute;
+        top: 24px;
+        left: -50px;
+      }
+    }
+  }
+  .masthead-title {
+    margin-top: 16px;
+  }
+  .masthead-paragraph {
+    color: var(--color-text-light);
+    max-width: 520px;
+    @extend .font-size-md;
+  }
+  .masthead-title-secondary {
+    color: var(--color-text-light);
+    font-weight: 400;
+    margin: 0 0 2px 0;
+    text-transform: capitalize;
+  }
+  .masthead-list {
+    margin: 0;
+    padding: 0;
+  }
+  .masthead-list-item {
+    list-style-type: none;
+    a {
+      color: black;
+    }
+  }
+  .masthead-link {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

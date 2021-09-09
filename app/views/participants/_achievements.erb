@@ -2,75 +2,28 @@
 <% badge_colors = ['Gold', 'Silver', 'Bronze'] %>
 <section class="section-p-md">
   <div class="container-fluid">
-    <div class="row">
-      <% badge_colors.each do |color| %>
-        <!-- achievements-gold -->
-        <div class="col-12 col-md-4">
-          <div class="achievements-overview">
+    <!-- sub-nav pills -->
+    <ul class="nav nav-pills">
 
-            <header class="achievements-gold">
-                  <span class="achievements-level">
-                    <%= color %>
-                  </span>
-              <span class="achievements-total">
-                    <%= badges_count[BadgeType.find_by(name: color)&.id.to_i].to_i %>
-                  </span>
-            </header>
-            <% badges[color.to_sym].to_a.each do |badge| %>
-              <div class="achievements-list">
-                <div class="achievements-list-item">
-                  <div class="achievements-description-gold">
-                    <%= badge['name'] %>
-                  </div>
-                  <div class="achievements-date">
-                    <%= badge['created_at'].strftime("%B %d, %Y") %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
-
+      <% ["Notebook", "Challenge", "Discussion", "First"].each do |challenge_round| %>
+        <li class="nav-item mr-4">
+          <%= link_to challenge_round, challenges_path, class: round_pills_tab_classes(nil, nil) %>
+        </li>
       <% end %>
-    </div>
+    </ul>
+    <!-- sub-nav pills -->
   </div>
 </section>
-<div class="container-fluid">
-  <header class="section-header">
-    <div>
-      <h4>Badges</h4>
-    </div>
-  </header>
-  <ul class="list-group list-group-flush-px-0 list-group-achievements">
-    <% participant.badges.includes(:aicrowd_badge).each do |badge| %>
-      <li class="list-group-item">
-        <div>
-          <div class="award-image">
-            <img src="/assets/awards/award-<%= badge.aicrowd_badge.badge_type&.name&.downcase %>.svg" class="country-flag" />
-          </div>
-          <div>
-            <div class="text-link">
-              <%= badge.aicrowd_badge['name'] %>
-            </div>
-            <span class="description">
-              <%= badge.aicrowd_badge['description'] %> <br />
-              <% badge.custom_fields.each do |key,value| %>
-                <% if key == 'challenge_round' %>
-                  <% challenge = ChallengeRound.find_by(id: value).challenge %>
-                  <%= link_to "Challenge: #{challenge.challenge}", challenge_path(challenge), class: 'red-link' %>
-                <% else %>
-                  <%= key %> : <%= value %> <br />
-                <% end %>
-              <% end %>
-            </span>
-          </div>
-        </div>
-        <span class="award-date">
-          <%= badge.aicrowd_badge['created_at'].to_date.strftime("%B %d, %Y") %>
-        </span>
-      </li>
-    <% end %>
-  </ul>
 
+<div class="container-fluid">
+  <div class="row">
+    <% participant.badges.each do |badge| %>
+      <% aicrowd_badges =  AicrowdBadge.where(name: badge.name).order(target: :desc) %>
+      <% next if aicrowd_badges.first.target.blank? %>
+      <% current_aicrowd_badge = active_badge(aicrowd_badges) %>
+      <div class="column">
+        <%= react_component("organisms/AchievementListItem/index", { icon: "/assets/challenge_badges/#{current_aicrowd_badge.image}.png", progress: participant.points(category: current_aicrowd_badge.name).to_i, target: {bronze_count: aicrowd_badges.last.target, silver_count: aicrowd_badges.second.target, gold_count: aicrowd_badges.first.target}, title: aicrowd_badges.first.name, description: aicrowd_badges.first.description }) %>
+      </div>
+    <% end %>
+  </div>
 </div>

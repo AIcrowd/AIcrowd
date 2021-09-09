@@ -16,17 +16,21 @@ module.exports = merge(sharedConfig, {
   },
 
   devServer: {
-    clientLogLevel: 'none',
+    client: {
+      logging: 'none',
+    },
     https: settings.dev_server.https,
     host: settings.dev_server.host,
     port: settings.dev_server.port,
-    contentBase: output.path,
-    publicPath: output.publicPath,
+    static: {
+      publicPath: output.publicPath,
+      directory: output.path,
+    },
     compress: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     historyApiFallback: true,
-    watchOptions: {
-      ignored: /node_modules/
-    }
+  },
+  watchOptions: {
+    ignored: /node_modules/
   }
 })

@@ -11,5 +11,9 @@ class CreateMeritActions < ActiveRecord::Migration[5.2]
       t.boolean :processed, default: false
       t.timestamps null: false
     end
+
+    add_index :merit_actions, :processed
   end
+
+
 end

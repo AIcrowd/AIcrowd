@@ -31,7 +31,7 @@ class ParticipantsController < ApplicationController
       @categories = {'No category information' => 1}
     end
     @achievements_count = 0
-    @participant.badges.badges_stat_count.map { |badge_type_id, badge_type_count| @achievements_count += badge_type_count if [1,2,3].include?(badge_type_id) }
+    @participant.aicrowd_user_badges.badges_stat_count.map { |badge_type_id, badge_type_count| @achievements_count += badge_type_count if [1,2,3].include?(badge_type_id) }
   end
 
   def edit; end

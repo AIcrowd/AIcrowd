@@ -1,0 +1,18 @@
+<% if current_participant&.awaiting_toasts.present? %>
+  <% aicrowd_badge = current_participant&.awaiting_toasts.last %>
+  <div class="modal badges-modal" id="badges-modal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 30%;">
+      <div class="modal-content" style="max-width: 94%;">
+        <%= react_component("molecules/AchievementPopup/index", { icon: "/assets/challenge_badges/#{aicrowd_badge.image}.png", title: "Congratulations!", description: aicrowd_badge.description }) %>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#badges-modal').modal('show');
+    })
+  </script>
+<% end %>
+<% current_participant&.toggle_toasts %>

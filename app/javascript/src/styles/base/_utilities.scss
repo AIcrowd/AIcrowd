@@ -1,0 +1,210 @@
+@import "./_all_mixins.scss";
+//
+// Utilities
+//
+
+// Border-top w/ padding-top
+.border-padding-top {
+  border-top: 1px solid var(--color-border-light) !important;
+  padding-top: 20px;
+  @include media-query("small-medium") {
+    padding-top: 16px;
+  }
+  @include media-query("small") {
+    padding-top: 12px;
+  }
+}
+
+// Border-top w/ padding-y
+.border-padding-y {
+  border-top: 1px solid var(--color-border-light) !important;
+  padding: 20px 0;
+  @include media-query("small-medium") {
+    padding: 16px 0;
+  }
+  @include media-query("small") {
+    padding: 12px 0;
+  }
+}
+
+// Border
+.border-bottom {
+  border-bottom: 1px solid var(--color-border-light) !important;
+}
+
+.border-top {
+  border-top: 1px solid var(--color-border-light) !important;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.border-none-md {
+  @include media-query("medium") {
+    border-top: none !important;
+  }
+}
+
+//Button — Following
+.btn-following {
+  background-color: var(--color-bg-light) !important;
+}
+
+// Centers and adds extra horiz. padding to content
+.container-center {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1680px;
+  padding-left: 40px;
+  padding-right: 40px;
+  @include media-query("large") {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @include media-query("medium") {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  @include media-query("small-medium") {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @include media-query("small") {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+// Display
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+// Embed video
+.embed-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 - this is responsive by adjusting the hight according to the width! */
+  padding-top: 25px;
+  height: 0;
+}
+.embed-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Hide @ breakpoint and below
+.hide-lg {
+  @include media-query("large") {
+    display: none;
+  }
+}
+.hide-md {
+  @include media-query("medium") {
+    display: none;
+  }
+}
+.hide-sm-md {
+  @include media-query("small-medium") {
+    display: none;
+  }
+}
+.hide-sm {
+  @include media-query("small") {
+    display: none;
+  }
+}
+
+// Hide @ breakpoint and above
+.hide-md-up {
+  @media only screen and (min-width: 992px) {
+    display: none !important;
+  }
+}
+
+.hide-sm-md-up {
+  @media only screen and (min-width: 640px) {
+    display: none !important;
+  }
+}
+
+.hide-sm-up {
+  @media only screen and (min-width: 576px) {
+    display: none !important;
+  }
+}
+
+// Overflow-x — Auto (for responsive tables)
+.overflow-x-auto {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Position
+.p-rel {
+  position: relative !important;
+}
+
+.p-sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: -1px;
+}
+
+// Screen-reader only
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// Sub-section
+.section-sub + .section-sub {
+  margin-top: 40px;
+  @include media-query("medium") {
+    margin-top: 32px;
+  }
+  @include media-query("small-medium") {
+    margin-top: 24px;
+  }
+}
+
+// Text-color
+.text-color-accent {
+  color: var(--color-accent);
+}
+
+.text-color-neutral {
+  color: var(--color-neutral);
+}
+
+.text-color-positive {
+  color: var(--color-positive);
+}
+
+.text-color-light {
+  color: var(--color-text-light);
+}
+
+// Debug — Uncomment to use
+
+// * {
+//   background: #000 !important;
+//   color: #0f0 !important;
+//   outline: solid #f00 1px !important;
+// }

@@ -1,0 +1,37 @@
+@import "../../../constants/scss/abstracts/__abstracts-dir.scss";
+@import "../../../styles/base/__base-dir.scss";
+
+.main {
+  width: 301px;
+  height: 282px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    width: 101px;
+    padding-bottom: 18px;
+  }
+
+  .shareText {
+    padding-top: 9px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: underline;
+    line-height: 18px;
+    color: #de4b46;
+    align-self: flex-start;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+  }
+  &:hover {
+    .shareText {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
