@@ -377,12 +377,8 @@ if Rails.env == 'development' || Rails.env == 'staging'
       end_dttm: "2018-08-12 23:59:00",
       minimum_score: nil,
       minimum_score_secondary: nil,
-      ranking_window: 24,
       ranking_highlight: 3,
-      score_precision: 3,
-      score_secondary_precision: 3,
-      leaderboard_note_markdown: "",
-      leaderboard_note: "\n"},
+    },
     {id: 52,
       challenge_id: 37,
       challenge_round: "Round 1",
@@ -393,12 +389,8 @@ if Rails.env == 'development' || Rails.env == 'staging'
       end_dttm: "2018-11-09 12:00:00",
       minimum_score: nil,
       minimum_score_secondary: nil,
-      ranking_window: 96,
       ranking_highlight: 3,
-      score_precision: 3,
-      score_secondary_precision: 3,
-      leaderboard_note_markdown: "",
-      leaderboard_note: "\n"},
+    },
     {id: 42,
       challenge_id: 30,
       challenge_round: "Final Evaluation",
@@ -409,12 +401,8 @@ if Rails.env == 'development' || Rails.env == 'staging'
       end_dttm: "2018-12-31 12:00:00",
       minimum_score: nil,
       minimum_score_secondary: nil,
-      ranking_window: 96,
       ranking_highlight: 3,
-      score_precision: 3,
-      score_secondary_precision: 3,
-      leaderboard_note_markdown: "",
-      leaderboard_note: "\n"}
+    }
   ])
 
 # Submissions

@@ -59,12 +59,8 @@ ChallengeRound.create!([
     end_dttm: Time.now + 10.days,
     minimum_score: nil,
     minimum_score_secondary: nil,
-    ranking_window: 24,
     ranking_highlight: 3,
-    score_precision: 3,
-    score_secondary_precision: 3,
-    leaderboard_note_markdown: "",
-    leaderboard_note: "\n"},
+  },
   {id: 102,
     challenge_id: 100,
     challenge_round: "Round 1",
@@ -75,12 +71,8 @@ ChallengeRound.create!([
     end_dttm: "2018-11-09 12:00:00",
     minimum_score: nil,
     minimum_score_secondary: nil,
-    ranking_window: 96,
     ranking_highlight: 3,
-    score_precision: 3,
-    score_secondary_precision: 3,
-    leaderboard_note_markdown: "",
-    leaderboard_note: "\n"},
+  },
   {id: 103,
     challenge_id: 100,
     challenge_round: "Final Evaluation",
@@ -91,12 +83,8 @@ ChallengeRound.create!([
     end_dttm: "2018-12-31 12:00:00",
     minimum_score: nil,
     minimum_score_secondary: nil,
-    ranking_window: 96,
     ranking_highlight: 3,
-    score_precision: 3,
-    score_secondary_precision: 3,
-    leaderboard_note_markdown: "",
-    leaderboard_note: "\n"}
+  }
 ])
 
 ChallengePartner.create!([
